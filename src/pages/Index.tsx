@@ -14,13 +14,13 @@ const Index = () => {
   const handleTemplateSelect = (template: string) => {
     setSelectedTemplate(template);
     setUploadedImage(null); // Clear uploaded image when template is selected
-    toast("Template loaded! Ready to create your meme!");
+    toast("템플릿 로드됨! 밈 만들기를 시작해보죠.");
   };
 
   const handleImageUpload = (imageUrl: string) => {
     setUploadedImage(imageUrl);
     setSelectedTemplate(null); // Clear template when image is uploaded
-    toast("Image uploaded! Add your text to create a meme!");
+    toast("이미지 업로드됨! 텍스트를 추가해 밈을 꾸며봅시다.");
   };
 
   const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
