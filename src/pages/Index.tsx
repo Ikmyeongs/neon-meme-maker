@@ -8,18 +8,10 @@ import { useTheme } from "@/components/theme-provider";
 
 const Index = () => {
   const { theme } = useTheme();
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
-
-  const handleTemplateSelect = (template: string) => {
-    setSelectedTemplate(template);
-    setUploadedImage(null); // Clear uploaded image when template is selected
-    toast("템플릿 로드됨! 밈 만들기를 시작해보죠.");
-  };
 
   const handleImageUpload = (imageUrl: string) => {
     setUploadedImage(imageUrl);
-    setSelectedTemplate(null); // Clear template when image is uploaded
     toast("이미지 업로드됨! 텍스트를 추가해 밈을 꾸며봅시다.");
   };
 
