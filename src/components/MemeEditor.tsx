@@ -9,12 +9,11 @@ import { Download, Type, Palette } from "lucide-react";
 import { toast } from "sonner";
 
 interface MemeEditorProps {
-  templateUrl: string | null;
   uploadedImage: string | null;
   onImageUpload: (imageUrl: string) => void;
 }
 
-export const MemeEditor = ({ templateUrl, uploadedImage, onImageUpload }: MemeEditorProps) => {
+export const MemeEditor = ({ uploadedImage, onImageUpload }: MemeEditorProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [fabricCanvas, setFabricCanvas] = useState<FabricCanvas | null>(null);
   const [topText, setTopText] = useState("");
@@ -38,46 +37,33 @@ export const MemeEditor = ({ templateUrl, uploadedImage, onImageUpload }: MemeEd
   }, []);
 
   useEffect(() => {
-    if (!fabricCanvas) return;
+    if (!fabricCanvas || !uploadedImage) return;
 
-    const imageUrl = uploadedImage || templateUrl;
-    if (!imageUrl) return;
-
-    // Clear canvas
     fabricCanvas.clear();
     fabricCanvas.backgroundColor = "#1a1a2e";
 
-    // Load image
-    FabricImage.fromURL(imageUrl, {
-      crossOrigin: 'anonymous'
-    }).then((img) => {
-      if (!fabricCanvas) return;
+    FabricImage.fromURL(uploadedImage, { crossOrigin: "anonymous" })
+      .then((img) => {
+        if (!fabricCanvas) return;
 
-      // Scale image to fit canvas
-      const canvasWidth = fabricCanvas.width!;
-      const canvasHeight = fabricCanvas.height!;
-      const imageWidth = img.width!;
-      const imageHeight = img.height!;
+        const canvasWidth = fabricCanvas.width!;
+        const canvasHeight = fabricCanvas.height!;
+        const scale = Math.min(canvasWidth / img.width!, canvasHeight / img.height!);
 
-      const scale = Math.min(canvasWidth / imageWidth, canvasHeight / imageHeight);
-      
-      img.set({
-        scaleX: scale,
-        scaleY: scale,
-        left: (canvasWidth - imageWidth * scale) / 2,
-        top: (canvasHeight - imageHeight * scale) / 2,
-        selectable: false
-      });
+        img.set({
+          scaleX: scale,
+          scaleY: scale,
+          left: (canvasWidth - img.width! * scale) / 2,
+          top: (canvasHeight - img.height! * scale) / 2,
+          selectable: false,
+        });
 
-      fabricCanvas.add(img);
-      fabricCanvas.renderAll();
-
-      toast("Image loaded! Add text to create your meme!");
-    }).catch((error) => {
-      console.error("Error loading image:", error);
-      toast.error("Failed to load image. Try a different one!");
-    });
-  }, [fabricCanvas, templateUrl, uploadedImage]);
+        fabricCanvas.add(img);
+        fabricCanvas.renderAll();
+        toast("이미지 로딩 완료! 당신만의 밈을 추가해보세요!");
+      })
+      .catch(() => toast.error("이미지 로딩 실패... 다른 걸로 추가해보세요!"));
+  }, [fabricCanvas, uploadedImage]);
 
   const addText = (text: string, position: 'top' | 'bottom') => {
     if (!fabricCanvas || !text.trim()) return;
@@ -137,14 +123,14 @@ export const MemeEditor = ({ templateUrl, uploadedImage, onImageUpload }: MemeEd
       link.href = dataURL;
       link.click();
 
-      toast("Meme downloaded! Share it with the world! 🔥");
+      toast("다운로드 완료! 친구한테 어그로 끌러 가봅시다! 🔥🔥");
     } catch (error) {
-      console.error("Error downloading meme:", error);
-      toast.error("Failed to download meme. Try again!");
+      console.error("다운로드 에러...:", error);
+      toast.error("다운로드 실패... 다시 해보세요!");
     }
   };
 
-  const currentImage = uploadedImage || templateUrl;
+  const currentImage = uploadedImage;
 
   return (
     <div className="space-y-6">

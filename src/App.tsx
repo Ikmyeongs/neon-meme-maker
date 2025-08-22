@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark" storageKey="memefusion-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="memeCreator-theme">
       <TooltipProvider>
         <Toaster />
         <Sonner />

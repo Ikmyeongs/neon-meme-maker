@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { MemeEditor } from "@/components/MemeEditor";
-import { TemplateSelector } from "@/components/TemplateSelector";
 import { Header } from "@/components/Header";
 import { toast } from "sonner";
 import heroBackground from "@/assets/y2k-hero-bg.jpg";
@@ -42,26 +41,16 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8 relative z-10">
         <div className="text-center mb-8">
           <h1 className="text-6xl font-cyber font-black mb-4 neon-text animate-glow-pulse">
-            MEME FUSION
+            MEME CREATOR
           </h1>
           <p className="text-xl text-muted-foreground mb-8 animate-cyber-drift">
             Create epic Y2K memes with electric style ⚡
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Template Selector */}
-          <div className="lg:col-span-1">
-            <TemplateSelector 
-              onTemplateSelect={handleTemplateSelect}
-              selectedTemplate={selectedTemplate}
-            />
-          </div>
-
-          {/* Meme Editor */}
+        <div className="grid">
           <div className="lg:col-span-2">
             <MemeEditor 
-              templateUrl={selectedTemplate}
               uploadedImage={uploadedImage}
               onImageUpload={handleImageUpload}
             />

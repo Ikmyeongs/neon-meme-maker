@@ -17,13 +17,13 @@ export const ImageUpload = ({ onImageUpload }: ImageUploadProps) => {
 
     // Validate file type
     if (!file.type.startsWith('image/')) {
-      toast.error("Please select a valid image file!");
+      toast.error("올바른 이미지 파일을 선택해주세요!");
       return;
     }
 
     // Validate file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
-      toast.error("Image too large! Please select an image under 10MB.");
+      toast.error("이미지가 너무 커요! 10MB 이하로 부탁드려요!");
       return;
     }
 
@@ -51,7 +51,7 @@ export const ImageUpload = ({ onImageUpload }: ImageUploadProps) => {
       };
       reader.readAsDataURL(file);
     } else {
-      toast.error("Please drop a valid image file!");
+      toast.error("올바른 이미지 파일을 넣어주세요!");
     }
   };
 

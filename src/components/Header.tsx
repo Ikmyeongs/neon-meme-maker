@@ -13,10 +13,10 @@ export const Header = () => {
             </div>
             <div>
               <h1 className="text-2xl font-cyber font-bold text-foreground">
-                MemeFusion
+                MemeCreator
               </h1>
               <p className="text-sm text-muted-foreground">
-                Y2K Meme Generator
+                세기말 밈 생성기
               </p>
             </div>
           </div>
