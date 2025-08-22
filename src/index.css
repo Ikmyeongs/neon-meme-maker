@@ -6,7 +6,74 @@
 
 @layer base {
   :root {
-    /* Y2K Background System */
+    /* Light Mode - Neon Red Theme */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
+    
+    /* Neon Red Primary System */
+    --primary: 0 100% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 0 100% 70%;
+    
+    /* Hot Pink Accents */
+    --secondary: 330 100% 60%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-glow: 330 100% 75%;
+    
+    /* Orange-Red Accent System */
+    --accent: 15 100% 65%;
+    --accent-foreground: 0 0% 98%;
+    --accent-glow: 15 100% 80%;
+    
+    /* Card & Surface System */
+    --card: 0 0% 95%;
+    --card-foreground: 0 0% 8%;
+    --card-border: 0 100% 40%;
+    
+    /* Muted Elements */
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+    
+    /* Input & Interactive */
+    --input: 0 0% 92%;
+    --input-border: 0 100% 50%;
+    --ring: 0 100% 60%;
+    
+    /* Destructive */
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Border System */
+    --border: 0 50% 85%;
+    
+    /* Neon Red Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 100% 60%), hsl(15 100% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(330 100% 60%), hsl(0 100% 60%));
+    --gradient-cyber: linear-gradient(135deg, hsl(0 0% 98%), hsl(0 20% 95%), hsl(15 30% 92%));
+    --gradient-neon: linear-gradient(135deg, hsl(0 100% 60%), hsl(330 100% 60%), hsl(15 100% 65%));
+    
+    /* Glow Effects */
+    --glow-primary: 0 0 30px hsl(0 100% 60% / 0.5);
+    --glow-secondary: 0 0 30px hsl(330 100% 60% / 0.5);
+    --glow-accent: 0 0 30px hsl(15 100% 65% / 0.5);
+    
+    /* Glass Morphism */
+    --glass: hsl(0 0% 8% / 0.1);
+    --glass-border: hsl(0 0% 8% / 0.2);
+    
+    /* Typography */
+    --font-cyber: 'Orbitron', monospace;
+    --font-ui: 'Inter', sans-serif;
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: box-shadow 0.3s ease, transform 0.3s ease;
+    
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark Mode - Electric Blue/Purple Theme */
     --background: 218 100% 4%;
     --foreground: 300 100% 98%;
     
@@ -60,19 +127,9 @@
     /* Glass Morphism */
     --glass: hsl(300 100% 98% / 0.1);
     --glass-border: hsl(300 100% 98% / 0.2);
-    
-    /* Typography */
-    --font-cyber: 'Orbitron', monospace;
-    --font-ui: 'Inter', sans-serif;
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-glow: box-shadow 0.3s ease, transform 0.3s ease;
-    
-    --radius: 0.75rem;
   }
 
-  /* Y2K Theme is always dark mode */
+  /* Dynamic theme support */
 }
 
 @layer base {
@@ -99,6 +156,10 @@
   }
   
   .neon-text {
+    text-shadow: 0 0 10px hsl(var(--secondary)), 0 0 20px hsl(var(--secondary)), 0 0 30px hsl(var(--secondary));
+  }
+  
+  .neon-text.dark {
     text-shadow: 0 0 10px hsl(180 100% 50%), 0 0 20px hsl(180 100% 50%), 0 0 30px hsl(180 100% 50%);
   }
   

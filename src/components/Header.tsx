@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Github, Zap } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Header = () => {
   return (
@@ -21,6 +22,7 @@ export const Header = () => {
           </div>
 
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <Button
               variant="outline"
               size="sm"
